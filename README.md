@@ -1,6 +1,15 @@
 ﻿# World of Books - Product Data Explorer
 
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?style=for-the-badge&logo=github)](https://github.com/rahulrathinam/Product-Data-Explorer-)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-green?style=for-the-badge&logo=vercel)](https://product-data-explorer.vercel.app)
+[![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
+
 A comprehensive web scraping and data exploration platform specifically designed for World of Books (https://www.worldofbooks.com/). This project extracts and displays book data with a beautiful, modern interface.
+
+## 🌐 **Live Demo**
+- **Frontend:** https://product-data-explorer.vercel.app
+- **Backend API:** https://product-data-explorer-api.railway.app
+- **GitHub Repository:** https://github.com/rahulrathinam/Product-Data-Explorer-
 
 ## 🚀 Features
 
@@ -40,6 +49,17 @@ A comprehensive web scraping and data exploration platform specifically designed
 
 ## 🚀 **Quick Start**
 
+### **Option 1: One-Click Setup**
+```bash
+# Make the script executable (Linux/Mac)
+chmod +x quick-start.sh
+
+# Run the quick start script
+./quick-start.sh
+```
+
+### **Option 2: Manual Setup**
+
 ### Prerequisites
 - Node.js 18+ 
 - npm or yarn
@@ -48,10 +68,10 @@ A comprehensive web scraping and data exploration platform specifically designed
 ### Installation
 
 1. **Clone the repository**
-```bash
-git clone <repository-url>
-cd Product-data-explorer
-```
+   ```bash
+   git clone https://github.com/rahulrathinam/Product-Data-Explorer-.git
+   cd Product-Data-Explorer-
+   ```
 
 2. **Install dependencies**
 ```bash
@@ -338,5 +358,6 @@ For issues and questions:
 
 ---
 
-**Built with ❤️ for World of Books data exploration**#   P r o d u c t - D a t a - E x p l o r e r -  
+**Built with ❤️ for World of Books data exploration**#   P r o d u c t - D a t a - E x p l o r e r - 
+ 
  

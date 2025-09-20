@@ -1,33 +1,31 @@
 #!/bin/bash
 
-# World of Books Deployment Script
+echo "🚀 Deploying Product Data Explorer..."
 
-echo "🚀 Starting World of Books deployment..."
+# Build Backend
+echo "📦 Building Backend..."
+cd backend
+npm install
+npm run build
+cd ..
 
-# Check if git is initialized
-if [ ! -d ".git" ]; then
-    echo "❌ Git not initialized. Please run 'git init' first."
-    exit 1
-fi
+# Build Frontend
+echo "📦 Building Frontend..."
+cd frontend
+npm install
+npm run build
+cd ..
 
-# Add all files to git
-echo "📁 Adding files to git..."
-git add .
+echo "✅ Build Complete!"
+echo "🌐 Ready for deployment!"
 
-# Commit changes
-echo "💾 Committing changes..."
-git commit -m "Deploy World of Books application
-
-- Complete book browsing system
-- Modern UI with search and filtering
-- Back navigation system
-- 70+ books across 7 categories
-- Responsive design
-- Production ready"
-
-# Push to main branch
-echo "📤 Pushing to main branch..."
-git push origin main
-
-echo "✅ Deployment complete!"
-echo "🌐 Your application should be available at your hosting provider's URL"
+# Instructions
+echo ""
+echo "📋 Deployment Instructions:"
+echo "1. Upload the 'dist' folder (backend) and 'out' folder (frontend) to your hosting"
+echo "2. Set up PostgreSQL database"
+echo "3. Run: npx prisma migrate deploy"
+echo "4. Run: npx prisma db seed"
+echo "5. Configure environment variables"
+echo ""
+echo "🔗 Repository: https://github.com/rahulrathinam/Product-Data-Explorer-"
