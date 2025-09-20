@@ -1,0 +1,42 @@
+{
+  "requestsFinished": 0,
+  "requestsFailed": 0,
+  "requestsRetries": 0,
+  "requestsFailedPerMinute": 0,
+  "requestsFinishedPerMinute": 0,
+  "requestMinDurationMillis": null,
+  "requestMaxDurationMillis": 0,
+  "requestTotalFailedDurationMillis": 0,
+  "requestTotalFinishedDurationMillis": 0,
+  "crawlerStartedAt": "2025-09-20T13:31:42.450Z",
+  "crawlerFinishedAt": "2025-09-20T13:33:43.431Z",
+  "statsPersistedAt": "2025-09-20T13:33:43.431Z",
+  "crawlerRuntimeMillis": 121029,
+  "crawlerLastStartTimestamp": 1758375102402,
+  "requestRetryHistogram": [],
+  "statsId": 3,
+  "requestAvgFailedDurationMillis": null,
+  "requestAvgFinishedDurationMillis": null,
+  "requestTotalDurationMillis": 0,
+  "requestsTotal": 0,
+  "requestsWithStatusCode": {
+    "404": 3
+  },
+  "errors": {},
+  "retryErrors": {
+    "1": {
+      "missing error code": {
+        "TypeError": {
+          "Cannot read properties of undefined (reading 'category')": {
+            "count": 2
+          }
+        },
+        "Error": {
+          "page.goto: Target page, context or browser has been closed": {
+            "count": 1
+          }
+        }
+      }
+    }
+  }
+}

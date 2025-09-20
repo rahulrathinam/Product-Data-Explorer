@@ -1,0 +1,131 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// Product Data Explorer schema
+
+model Navigation {
+  id             String     @id @default(cuid())
+  title          String
+  slug           String     @unique
+  lastScrapedAt  DateTime?
+
+  categories     Category[]
+
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+}
+
+model Category {
+  id             String     @id @default(cuid())
+  navigation     Navigation @relation(fields: [navigationId], references: [id])
+  navigationId   String
+  parent         Category?  @relation("CategoryToCategory", fields: [parentId], references: [id])
+  parentId       String?
+  children       Category[] @relation("CategoryToCategory")
+  title          String
+  slug           String
+  productCount   Int        @default(0)
+  lastScrapedAt  DateTime?
+
+  products       Product[]
+
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  @@index([navigationId])
+  @@index([parentId])
+  @@unique([navigationId, slug])
+}
+
+model Product {
+  id             String        @id @default(cuid())
+  sourceId       String
+  title          String
+  author         String?
+  isbn           String?
+  publisher      String?
+  publicationDate DateTime?
+  price          Float?
+  currency       String?       @default("GBP")
+  imageUrl       String?
+  sourceUrl      String        @unique
+  lastScrapedAt  DateTime?
+
+  categories     Category[]
+  detail         ProductDetail?
+  reviews        Review[]
+
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@index([sourceId])
+  @@index([isbn])
+  @@index([author])
+}
+
+model ProductDetail {
+  product     Product  @relation(fields: [productId], references: [id])
+  productId   String   @id
+  description String?
+  specs       Json?
+  ratingsAvg  Float?   @default(0)
+  reviewsCount Int?    @default(0)
+}
+
+model Review {
+  id         String   @id @default(cuid())
+  product    Product  @relation(fields: [productId], references: [id])
+  productId  String
+  author     String?
+  rating     Float?
+  text       String?
+  createdAt  DateTime @default(now())
+
+  @@index([productId])
+}
+
+model ScrapeJob {
+  id          String    @id @default(cuid())
+  targetUrl   String
+  targetType  String
+  status      String    @default("queued")
+  startedAt   DateTime? 
+  finishedAt  DateTime?
+  errorLog    String?
+  createdAt   DateTime  @default(now())
+
+  @@index([status])
+}
+
+model ViewHistory {
+  id         String   @id @default(cuid())
+  userId     String?
+  sessionId  String
+  pathJson   Json
+  createdAt  DateTime @default(now())
+
+  @@index([sessionId])
+}
+
+model ScrapeCache {
+  id          String    @id @default(cuid())
+  url         String    @unique
+  content     String
+  contentType String
+  expiresAt   DateTime
+  createdAt  DateTime  @default(now())
+
+  @@index([expiresAt])
+}
