@@ -21,7 +21,6 @@ export function useHistoryTracker() {
     window.addEventListener('popstate', handler)
     const pushState = history.pushState
     history.pushState = function (...args) {
-      // @ts-ignore
       const r = pushState.apply(this, args)
       handler()
       return r
@@ -32,12 +31,3 @@ export function useHistoryTracker() {
     }
   }, [])
 }
-
-
-
-
-
-
-
-
-

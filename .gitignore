@@ -17,3 +17,8 @@ build/
 *.log
 .vscode/
 .idea/
+
+# env files
+.env
+.env.local
+.env.*.local

@@ -2,8 +2,9 @@
 import { useQuery } from '@tanstack/react-query'
 import { apiGet } from '../../../lib/api'
 import { useParams, useRouter } from 'next/navigation'
-import Link from 'next/link'
-import { ArrowLeft, BookOpen, Star, Loader2, User, Calendar, Building, Hash, Heart, ShoppingCart, Share2, Bookmark } from 'lucide-react'
+import Image from 'next/image'
+import { ArrowLeft, BookOpen, Star, Loader2, User, Calendar, Building, Hash, Heart, Share2, Bookmark } from 'lucide-react'
+
 import { useState } from 'react'
 
 interface ProductDetail {
@@ -84,7 +85,7 @@ export default function ProductDetailPage() {
                 <div className="p-2 bg-indigo-100 rounded-lg">
                   <BookOpen className="h-6 w-6 text-indigo-600" />
                 </div>
-        <div>
+                <div>
                   <h1 className="text-2xl font-bold text-gray-900">Book Details</h1>
                   <p className="text-sm text-gray-500">Explore this amazing book</p>
                 </div>
@@ -124,11 +125,13 @@ export default function ProductDetailPage() {
               {/* Book Cover */}
               <div className="lg:col-span-1">
                 {data.imageUrl ? (
-                  <div className="aspect-[3/4] rounded-xl overflow-hidden bg-gray-100">
-                    <img 
-                      src={data.imageUrl} 
+                  <div className="aspect-[3/4] rounded-xl overflow-hidden bg-gray-100 relative">
+                    <Image
+                      src={data.imageUrl}
                       alt={data.title}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
+                      sizes="(min-width: 1024px) 33vw, 100vw"
                     />
                   </div>
                 ) : (
@@ -262,5 +265,3 @@ export default function ProductDetailPage() {
     </div>
   )
 }
-
-

@@ -2,8 +2,9 @@
 import { useQuery } from '@tanstack/react-query'
 import { apiGet } from '../../../lib/api'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useParams, useSearchParams, useRouter } from 'next/navigation'
-import { ArrowLeft, BookOpen, Star, Loader2, ChevronLeft, ChevronRight, Search, Grid, List, Heart, ShoppingCart, Filter } from 'lucide-react'
+import { ArrowLeft, BookOpen, Star, Loader2, ChevronLeft, ChevronRight, Search, Grid, List, Heart, ShoppingCart } from 'lucide-react'
 import { useState } from 'react'
 
 interface Product { 
@@ -150,7 +151,7 @@ export default function ProductGrid() {
 						{searchTerm && (
 							<div className="mb-6">
 								<p className="text-gray-600">
-									Found {filteredProducts.length} books matching "{searchTerm}"
+									{`Found ${filteredProducts.length} books matching ${searchTerm}`}
 								</p>
 							</div>
 						)}
@@ -174,11 +175,15 @@ export default function ProductGrid() {
 										<>
 											<div className="aspect-[3/4] relative overflow-hidden rounded-t-2xl">
 												{book.imageUrl ? (
-													<img 
-														src={book.imageUrl} 
-														alt={book.title}
-														className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-													/>
+													<div className="w-full h-full relative">
+														<Image
+															src={book.imageUrl}
+															alt={book.title}
+															fill
+															className="object-cover group-hover:scale-110 transition-transform duration-500"
+															sizes="(min-width: 1024px) 25vw, 50vw"
+														/>
+													</div>
 												) : (
 													<div className="w-full h-full bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center">
 														<BookOpen className="h-16 w-16 text-indigo-400" />
@@ -221,11 +226,15 @@ export default function ProductGrid() {
 										<>
 											<div className="w-24 h-32 relative overflow-hidden rounded-l-xl">
 												{book.imageUrl ? (
-													<img 
-														src={book.imageUrl} 
-														alt={book.title}
-														className="w-full h-full object-cover"
-													/>
+													<div className="w-full h-full relative">
+														<Image
+															src={book.imageUrl}
+															alt={book.title}
+															fill
+															className="object-cover"
+															sizes="100px"
+														/>
+													</div>
 												) : (
 													<div className="w-full h-full bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center">
 														<BookOpen className="h-8 w-8 text-indigo-400" />
@@ -268,9 +277,9 @@ export default function ProductGrid() {
 											</div>
 										</>
 									)}
-					</Link>
-				))}
-			</div>
+								</Link>
+							))}
+						</div>
 
 						{/* Enhanced Pagination */}
 						{data.pages > 1 && (
@@ -301,7 +310,7 @@ export default function ProductGrid() {
 												}`}
 											>
 												{pageNum}
-					</Link>
+											</Link>
 										);
 									})}
 								</div>
@@ -316,12 +325,12 @@ export default function ProductGrid() {
 								>
 									Next
 									<ChevronRight className="h-5 w-5 ml-2" />
-					</Link>
-				</div>
+								</Link>
+							</div>
 						)}
 					</>
-			)}
-		</main>
+				)}
+			</main>
 		</div>
 	)
 }
