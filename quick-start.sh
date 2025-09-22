@@ -63,3 +63,4 @@ echo "Press Ctrl+C to stop all services"
 
 # Wait for user to stop
 wait
+
