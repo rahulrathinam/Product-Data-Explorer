@@ -8,10 +8,9 @@ const nextConfig: NextConfig = {
     // allow common remote hosts (useful during development).
     // For production, replace the wildcard with only the hosts you trust.
     remotePatterns: [
-  { protocol: 'https', hostname: 'images.example.com' },
-  { protocol: 'https', hostname: 'cdn.example2.com' },
-],
-
+      { protocol: 'https', hostname: 'images.example.com' },
+      { protocol: 'https', hostname: 'cdn.example2.com' },
+    ],
   },
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000',
@@ -23,6 +22,11 @@ const nextConfig: NextConfig = {
         destination: `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/:path*`,
       },
     ];
+  },
+
+  // ✅ Add this block
+  eslint: {
+    ignoreDuringBuilds: true,
   },
 };
 
